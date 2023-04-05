@@ -1,0 +1,30 @@
+
+
+4/4/23
+
+    Office Hours 
+
+        Graduates are speaking. Recommended to spend time solving an algo a day and updating it to github, Github repos are a good way to showcase that your actually working on code after you graduate as well as showcasing that you understand algos and how they work and function. 
+
+        Theres an alternative focus on the projects and algos section. Some on project, some on algos. 
+
+        Basic Team Meeting Setup 
+            What did you finish? 
+            What are you planning to work on today?
+            What do you need help with?
+            Meeting should take no longer than 15 minutes.
+            Have a code review setup. By me most likely, review and test the code with the individual. 
+
+
+        Post Graduation Advice 
+
+            Study algos together with the squad
+            Take point on that give everyone a week, afterwards, plan for that. And then get that taken care of.
+            Hard work is not over once the dojo is finished. 
+            Keep in contact with the team, keep us focused keep us together, make it happen. 
+            Assume the same kind of time commitment after graduation. Set a realistic time frame for how long the job search will be. A year is not a bad estimation of time. 
+
+        Job Hunting 
+
+            Otta.com 
+                Big for junior dev jobs 

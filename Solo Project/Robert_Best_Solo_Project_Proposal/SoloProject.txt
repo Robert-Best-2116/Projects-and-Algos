@@ -1,0 +1,60 @@
+Budget App 
+
+    Robert Best
+    JavaScript
+    https://github.com/Robert-Best-2116 (Official Repo for this project will not be created until approval.)
+    Budget App
+    MVP-Described in Overview 
+    Bonus Features-Bootstrap, Deployment, Login and Registration Allowing for a Budget to be created for each user. 
+
+
+
+Budget App Overview
+
+    the overall idea is a budget application similar to the budget that i use on a regular basis, 
+
+    the opening page displays the total expenses and income and breaks it down via monthly expense and other expenses, while the income is broken down via monthly and other income. The savings will also be displayed at the bottom. 
+
+    To create the project I can use a views folder so i can have each of the components render appropriately, the expenses component, the income component and the savings component, Or I could simply do it all on one file and use bootstrap to shuttle everything around in their appropriate divs. 
+
+    I am planning on using one model for the expenses and income, and having it separated using a ternary operator or perhaps a function call for displaying the expenses or income on their appropriate section. the alternative is simply to use two different models. If so separate pages will need to be used, or i can reuse components. 
+
+    the savings will be its own model. 
+
+    Closing the Month subtracts the total amount of the expenses away from the total income, if there is excess it is added to the savings amount, if there isn’t enough then it is subtracted from the savings amount.
+
+        -Note- Figma was having an issue with not allowing me to write texts over some of the colored sections so i do not have visual representations for all of the buttons 
+ 
+            Main Page 
+                Add Expense-Goes to the add new expense page 
+                Add Income-Goes to the add new income page 
+                Add Savings-Goes to add savings, a preset amount is already included so this will only be an edit page, there is no create. 
+                Savings Amount-Potentially not going to use this page as a view page beings all of the information is present and full crud functionality will be taken care of by the expense/income sections.
+                Close Month-Adds together the total expense and total income, subtracts from or adds to the savings amount. 
+
+            Add Expense/Savings 
+                Income/Expense will be a drop down menu
+                Monthly/Other will be a drop down menu 
+                Save-Saves and redirects to home page 
+                Cancel-Redirects to home page 
+                Home-Redirects to home page 
+
+            View Expense Income 
+                Displays all basic information present
+                Home-Navigates to main page 
+                Edit-Redirects to edit page 
+
+            Edit Income/Expense 
+                All information is prefilled and presented, -Note- On downloaded PDF income/expense was left out of edit form
+                Submit-saves edited information
+                Delete-Removes the entry from the database
+                Home-Returns home. 
+
+            Add/Withdraw from Savings 
+                This is an edit page, basic savings amount of $0.00 Will be added in the model and displayed on the front page Additional feature would be unable to withdraw funds that reduce the account past $0.00
+                Submit-changes the savings amount 
+                Home-Goes home 
+
+            Savings Page 
+
+                Potentially wont be using this page as i will already have full crud functionality with the other sections of the application and their is only one savings item. and the amount is already present. Seems redundant. 
