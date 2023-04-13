@@ -9,7 +9,7 @@ const BudgetItem = require ("../models/budgetItem.model");
                         res.json(allBudgetItems)
                     })
                     .catch((err) => {
-                        res.json({message: "Find All: Something went wrong", error: err})
+                        res.status(500).json({err})
                 });
             }
 
@@ -20,7 +20,7 @@ const BudgetItem = require ("../models/budgetItem.model");
                     res.json({ budgetItem: oneBudgetItem })
                 })
                 .catch((err) => {
-                    res.json({ message: 'Something went wrong', error: err })
+                    res.status(400).json({err})
                 });}
 
             //Create
@@ -30,7 +30,7 @@ const BudgetItem = require ("../models/budgetItem.model");
                     res.json({ budgetItem: newBudgetItem })
                 })
                 .catch((err) => {
-                    res.json({ message: 'Something went wrong', error: err })
+                    res.status(400).json({err})
                 });}
 
             //Update 
@@ -44,7 +44,7 @@ const BudgetItem = require ("../models/budgetItem.model");
                     res.json({ budgetItem: updatedBudgetItem })
                 })
                 .catch((err) => {
-                    res.json({ message: 'Something went wrong', error: err })
+                    res.status(400).json({err})
                 });}
 
             //Delete 
@@ -54,5 +54,5 @@ const BudgetItem = require ("../models/budgetItem.model");
                     res.json({ result: result })
                 })
                 .catch((err) => {
-                    res.json({ message: 'Something went wrong', error: err })
+                    res.status(400).json({err})
                 });}

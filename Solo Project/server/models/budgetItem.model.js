@@ -6,12 +6,12 @@ const mongoose = require('mongoose');
         name: {
             type: String,
             required: [true, "Name is required"],
-            minlength: [6, "Name must be at least 6 characters long"] 
+            minlength: [3, "Name must be at least 3 characters long"] 
         },
         amount: {
             type: Number, 
             required: [true, "Amount is required"],
-            min: [1, "Amount must be greater than 1"]
+            min: [1.00, "Amount must be greater than 1.00"]
         },
         type: {
             type: String,

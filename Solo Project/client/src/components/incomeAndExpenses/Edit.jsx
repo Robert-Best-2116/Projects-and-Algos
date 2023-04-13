@@ -1,9 +1,9 @@
 import React from 'react'
 
-const update = () => {
+const Edit = () => {
   return (
     <div>update</div>
   )
 }
 
-export default update
+export default Edit

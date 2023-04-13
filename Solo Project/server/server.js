@@ -10,7 +10,7 @@ app.use(express.json(), express.urlencoded({extended:true}));
 
 
 require('./config/mongoose.config');
-require('./routes/budgetItem.routes')(app);
-require('./routes/savings.routes')(app);
+require('./routes/budgetItem.route')(app);
+require('./routes/savings.route')(app);
 
 app.listen(port, () => console.log(`the server is all filed up on port ${port}`));
