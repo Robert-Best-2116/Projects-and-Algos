@@ -44,14 +44,25 @@ const Dashboard = () => {
 //   :
 //   null
 // }
+
+// { if(item.type === 'expense') {
+//   <p>{item.name}</p>
+// }
+// }
+
+// { item.type === 'expense' ?
+                
+// <Link to={`/budgetItem/${item._id}`}>{item.name}</Link>
+// :
+// null
+// }
+
   return (
     <div>
       {
         budgetItems.map((item, idx) => {
           return ( 
             <div>
-              
-
 
               <tr key={idx} >
                 <td>
