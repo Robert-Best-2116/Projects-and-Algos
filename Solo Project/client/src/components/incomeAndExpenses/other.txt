@@ -1,0 +1,64 @@
+//run functions instead of terninary operators????? pretty much run a function in each section, that only displays if its an expense thats monthly. 
+
+// { budgetItems.type = "expense" ?
+  
+//   <Link to={`/budgetItem/${item._id}`}>{item.name}</Link>
+//   :
+//   null
+// }
+
+// { if(item.type === 'expense') {
+//   <p>{item.name}</p>
+// }
+// }
+
+// { item.type === 'expense' ?
+                
+// <Link to={`/budgetItem/${item._id}`}>{item.name}</Link>
+// :
+// null
+// }
+
+{/* <tr key={idx} >
+<td>
+  <Link to={`/budgetItem/${item._id}`}>{item.name}</Link>
+</td>
+<td>
+  <p>{item.amount}</p>
+</td>
+<td>
+  <p>{item.type}</p>
+</td>
+<td>
+  <p>{item.frequency}</p>
+</td>
+</tr> */}
+
+
+            <div>
+              <div>
+                <h2>Expense Column</h2>
+                <div>
+                  <h4>Monthly Expenses</h4>
+                  <p>{monthlyExpenses(item)}</p>
+                </div>
+                <div>
+                  <h4>Other Expenses</h4>
+                  <p>function goes here</p>
+                </div>
+              </div>
+              <div>
+                <h2>Income</h2>
+                <div>
+                  <h4>Monthly Income</h4>
+                  <p>function goes here</p>
+                  </div>
+                <div>
+                  <h4>Other Income</h4>
+                  <p>function goes here</p>
+                </div>
+              </div>
+
+
+
+            </div>

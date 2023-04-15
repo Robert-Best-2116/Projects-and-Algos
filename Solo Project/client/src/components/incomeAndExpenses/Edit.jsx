@@ -6,10 +6,12 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 const Edit = () => {
 
   //set state, errors and navigate 
+  const {id} = useParams();
   const [name, setName] = useState("")
   const [amount, setAmount] = useState(0.00)
   const [type, setType] = useState("income")
   const [frequency, setFrequency] = useState("monthly")
+  //const [itemId, setItemId] = useState("monthly")
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -22,6 +24,7 @@ const Edit = () => {
             setAmount(res.data.budgetItem.amount);
             setType(res.data.budgetItem.type);
             setFrequency(res.data.budgetItem.frequency);
+            //setItemId(res.data.budgetItem._id);
         }) 
         .catch((err) => {
             console.log(err);
@@ -30,24 +33,41 @@ const Edit = () => {
 
   //Edit Submission W/ Navigation to Dashboard
   const editBudgetItem = (e) => {
-
-    e.preventDefault();
     
     axios.patch(`http://localhost:8000/api/budgetItem/${id}`, {
       name,
       amount,
       type,
-      frequency
+      frequency,
     }) 
       .then(res =>{
             console.log(res.data);
-            //navigate(`/`);
+            navigate(`/budgetItem/${id}`);
     }) 
       .catch(err => {
           console.log(err);
           setErrors(err.response.data.err.errors);
       })
     }
+
+  //Delete Budget Item
+  const deleteBudgetItem = (Id) => {
+    console.log(Id)
+    console.log("button Pressed")
+    axios.delete(`http://localhost:8000/api/budgetItem/${Id}`)
+        .then(res => {
+          console.log("inside delete .then")
+          //console.log(res.data)
+          navigate("/");
+        })
+        .catch((err) => {
+          console.log("inside delete .catch")
+
+            console.log(err);
+        });
+
+
+  }
   
 
 
@@ -58,9 +78,9 @@ const Edit = () => {
       <div class="d-flex justify-content-between mt-3">
         <h1>Edit an Item</h1>
         <p><Link to={`/`}>Go Back to Home</Link></p>
-      </div>
-        <div>
-        <form onSubmit={editBudgetItem} class="form-control">
+      </div  >
+        <div class="form-control">
+        <form onSubmit={editBudgetItem}>
           <div>
             <div>
             <h4>Edit an item</h4>
@@ -105,11 +125,14 @@ const Edit = () => {
                   </select>
               </div>
             </div>
-            <div>
-              <input type="submit" value="Edit"/> 
-            </div>
           </div>
         </form>
+            <div>
+            </div>
+          <div class="d-flex justify-content-between mt-3">
+            <button onClick={(e) => editBudgetItem(id)}>Edit</button>
+            <button onClick={(e) => deleteBudgetItem(id)}>Delete</button>
+          </div>
       </div>
     </div>
   )

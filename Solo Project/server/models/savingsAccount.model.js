@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 //create the schema 
 
-    const SavingsSchema = new mongoose.Schema ({
+    const SavingsAccountSchema = new mongoose.Schema ({
         amount: {
             type: Number, 
             required: [true, "Amount is required"],
@@ -14,4 +14,4 @@ const mongoose = require('mongoose');
     );
 
 
-module.exports = mongoose.model("Savings", SavingsSchema);
+module.exports = mongoose.model("SavingsAccount", SavingsAccountSchema);

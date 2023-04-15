@@ -22,69 +22,93 @@ const Dashboard = () => {
     });
     }, [])
 
-  //Delete Budget Item
-  const deleteBudgetItem = (Id) => {
-    axios.delete(`http://localhost:8000/api/budgetItem/${Id}`)
-        .then(res => {
-            console.log(res.data)
-            const filteredBudgetItems = budgetItems.filter(budgetItems => budgetItems._id !== Id)
-            setBudgetItems(filteredBudgetItems);
-
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+  //Creating functions to sort the items by type and frequency. 
+  const monthlyExpenses = (item) => {
+    if (item.type === "expense" && item.frequency === "monthly"
+    ) {
+      return <p> <Link to={`/budgetItem/${item._id}`}>{item.name}</Link> {item.amount} </p>
+    }
+    else {return null;}
   }
 
-//run functions instead of terninary operators????? pretty much run a function in each section, that only displays if its an expense thats monthly. 
+  const otherExpenses = (item) => {
+    if (item.type === "expense" && item.frequency === "other"
+    ) {
+      return <p> <Link to={`/budgetItem/${item._id}`}>{item.name}</Link> {item.amount} </p>
+    }
+    else {return null;}
+  }
 
-// { budgetItems.type = "expense" ?
-  
-//   <Link to={`/budgetItem/${item._id}`}>{item.name}</Link>
-//   :
-//   null
-// }
+  const monthlyIncome = (item) => {
+    if (item.type === "income" && item.frequency === "monthly"
+    ) {
+      return <p> <Link to={`/budgetItem/${item._id}`}>{item.name}</Link> {item.amount} </p>
+    }
+    else {return null;}
+  }
+  const otherIncome = (item) => {
+    if (item.type === "income" && item.frequency === "other"
+    ) {
+      return <p> <Link to={`/budgetItem/${item._id}`}>{item.name}</Link> {item.amount} </p>
+    }
+    else {return null;}
+  }
 
-// { if(item.type === 'expense') {
-//   <p>{item.name}</p>
-// }
-// }
-
-// { item.type === 'expense' ?
-                
-// <Link to={`/budgetItem/${item._id}`}>{item.name}</Link>
-// :
-// null
-// }
 
   return (
-    <div>
-      {
-        budgetItems.map((item, idx) => {
-          return ( 
-            <div>
-
-              <tr key={idx} >
-                <td>
-                  <Link to={`/budgetItem/${item._id}`}>{item.name}</Link>
-                </td>
-                <td>
-                  <p>{item.amount}</p>
-                </td>
-                <td>
-                  <p>{item.type}</p>
-                </td>
-                <td>
-                  <p>{item.frequency}</p>
-                </td>
-              </tr>
-
-
-
-            </div>
-          )
-        })
-      }
+    <div className='container'>
+      <div className="d-flex justify-content-between mt-3 mb-3">
+        <h1>Budget App</h1>
+        <Link to={`/budgetItem`}>Add to your budget!</Link>
+      </div>
+      <div className="d-flex justify-content-between mt-3 mb-3">
+        <div id='Expense Column'>
+          <h2>Expenses Column </h2>
+          <h4>Monthly Expenses</h4>
+          <div id='Monthly Expenses'>
+            {
+              budgetItems.map((item, idx) => {
+                return ( 
+                  <p>{monthlyExpenses(item)}</p>
+                )
+              })
+            }
+          </div>
+          <div id='Other Expenses'>
+          <h4>Other Expenses</h4>
+          {
+              budgetItems.map((item, idx) => {
+                return ( 
+                  <p>{otherExpenses(item)}</p>
+                )
+              })
+            }
+          </div>
+        </div>
+        <div id='Income Column'>
+          <h2>Income Column </h2>
+          <h4>Monthly Income</h4>
+          <div id='Monthly Income'>
+            {
+              budgetItems.map((item, idx) => {
+                return ( 
+                  <p>{monthlyIncome(item)}</p>
+                )
+              })
+            }
+          </div>
+          <div id='Other Income'>
+          <h4>Other Income</h4>
+          {
+              budgetItems.map((item, idx) => {
+                return ( 
+                  <p>{otherIncome(item)}</p>
+                )
+              })
+            }
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
