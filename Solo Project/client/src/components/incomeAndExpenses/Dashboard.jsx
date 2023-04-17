@@ -54,6 +54,36 @@ const Dashboard = () => {
     else {return null;}
   }
 
+  // Calculating total income and expenses
+  const expenseTotal = (expenses) => {
+    let total = 0;
+    for ( let expense in expenses) {
+      if (expenses[expense].type === "expense") {
+        total += expenses[expense].amount
+
+      }
+    }
+    return total
+  }
+
+  const incomeTotal = (incomes) => {
+    let total = 0;
+    for ( let income in incomes) {
+      if (incomes[income].type === "income") {
+        total += incomes[income].amount
+
+      }
+    }
+    return total
+  }
+
+  //Calculating Total Spending
+  const savingsAdjustment = (everything) => {
+    let total = incomeTotal(everything) - expenseTotal(everything);
+    return total;
+  }
+
+
 
   return (
     <div className='container'>
@@ -84,6 +114,10 @@ const Dashboard = () => {
               })
             }
           </div>
+          <div>
+            <h4> Expense Total</h4>
+            <p>${expenseTotal(budgetItems)}</p>
+          </div>
         </div>
         <div id='Income Column'>
           <h2>Income Column </h2>
@@ -107,7 +141,16 @@ const Dashboard = () => {
               })
             }
           </div>
+          <div>
+            <h4> Total Income </h4>
+            <p>${incomeTotal(budgetItems)}</p>
+          </div>
         </div>
+      </div>
+      <div className='Savings'>
+        <div></div>
+            <h4>Total Savings</h4>
+            <p>${savingsAdjustment(budgetItems)}</p>
       </div>
     </div>
   )

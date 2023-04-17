@@ -1,0 +1,215 @@
+
+
+Variables & Data Types 
+
+    Most of the time, programs require information to be passed around. For example, think about a calculator that would calculate what the tip would be on a restaurant bill. The program would need to know the total amount of the bill, to know the percentage you want to tip, then it would need to use those two numbers to calculate an amount. And it would have to give the user a place to enter that information in and a place to display the calculation back to the user. 
+
+    But how does that program take the bill amount and calculate it? 
+
+    Every time a piece of information is entered or used in a program, the computer needs to carve out some of its memory to hold it. we as devs, get to tell the computer whe nto carve out space for a piece of data, what to call that space for the piece of data,  and what gets stored in that space, we call this process creating variables. 
+
+        Var
+
+            As you saw in the practice, variables are things that hold information. It's like a file folder: we name the folder and can put stuff inside of it. Once we put stuff (data) inside of it we can access that data anytime by calling that variable. 
+
+        Data Types 
+
+            there are many different type sof dat ain computer science the most common ones in Javascript are: string, number, undefined, null and boolean. 
+
+            Number 
+
+                Numbers are exactly what you think they are, numbers. In Javascript, whole numbers and floating point numbers aka decimals are all considered "numbers". You can perform mathematical operations using variables when numbers are assigned to them. 
+
+                    var myNum = 5;
+                    var myOtherNum = 10;
+                    console.log(myNum + myOtherNum); // 15
+
+            String
+
+                Strings are simply characters that are grouped together and surrounded by quotation marks. Strings can have any amount of characters inside of them. Strings have " " around them. Anything added into those quotes is treated as a string. This means that if you add numbers to those quotes, they are treated like a string. Computers cannot do arithmetic with strings 
+
+            Undefined 
+
+                A variable that has not yet been assigned a value takes on the value of undefined. 
+
+            Null 
+
+                Null and undefined are sometimes incorrectly used interchangeably. They are very different! Undefined is the value that is given to a variable that ha snot yet explicitly been assigned a value. Null is a value that is explicitly assigned, and often used when wanting to explicitly state that nothing is currently being held in this variable. 
+
+            Boolean 
+
+                Boolean is a fancy way of saying true or false. 
+
+
+Conditionals and Operators 
+
+    What if we have some code that we only want to execute under certain conditions? In computer programming this is called a conditional statement. The syntax in Javascript looks like this 
+
+        if (condition) {    
+            // what to do if condition is true
+        }
+        else if (2nd condition) { // can have 0 to many of these statements    
+            // what to do if 2nd condition is true
+        }
+        else {  // can have 0 or 1 of these statements    
+            // what to do if none of the previous conditions are met
+        }
+
+    Note that in an if/else if/ else chain when one of the conditions evaluates as true, our code wont check any of the other conditions until it hits an "if" again 
+
+        Examples 
+
+            If/Else Statement 
+
+            var x = 25;
+            if (x > 50) {    
+                console.log("bigger than 50");
+            }
+            else {    
+                console.log("smaller than 50");
+            }
+            // because x is not greater than 50, the second print statement, "smaller than 50", is the only line that will execute
+
+
+            If/Else If/Else Statement 
+
+            var x = 75;
+            if (x > 100) {    
+                console.log("bigger than 100");
+            }
+            else if (x > 50) {    
+                console.log("bigger than 50");
+            }
+            else if(x > 25) {
+                console.log("bigger than 25");
+            }
+            else {    
+                console.log("small number");
+            }
+            // because the first statement is not true, but the second statement is true, it will print "bigger than 50" to our console.  However, it won't even try to check our else if(x > 25) or else statements because it has already found something in the chain that is true.
+
+
+    Comparison and Logic Operators 
+
+        Conditional statements evaluate to boolean values (true or false). Here is a table of ways you can compare two values 
+
+            
+            Operator	Description	                Examples
+            ==	        equal	                    1 == 2 => false; 1 == 1 => true
+            !=	        not equal	                1 != 2 => true; 1 != 1 => false
+            >	        greater than	            1 > 2 => false; 2 > 1 => true
+            <	        less than	                1 < 2 => true; 1 < 2 => false
+            >=	        greater than or equal to    1 >= 2 => false; 2 >= 2 => true
+            <=	        less than or equal to	    1 <= 2 => true; 2 <= 2 => true
+
+
+Arrays 
+
+    Overview 
+
+        We've learned about capturing data with variables and have been practicing with things like strings and numbers. Thats important, but what if we need a collection of strings or numbers? For example, if we are managing office data and we want to store data about an employee in our application the following code is just okay. Ideally we want to store all of these together because they are related 
+
+            var usersFirstName = "Dwight";
+            var usersLastName = "Schrute";
+            var usersEmail = "beetsbears@battlestar.com";
+
+    
+    Arrays 
+
+        Instead, we want to use a data structure called an array : 
+
+            var user = ["Dwight", "Schrute", "beetsbears@battlestar.com"];
+
+        Add: 
+
+            Now we just have one variable. If we want to add information, we can use the push method, to add a value to the end of our array. 
+
+                    var user = ["Dwight", "Schrute", "beetsbears@battlestar.com"];
+                    user.push("jello");
+                    console.log(user);    // ["Dwight", "Schrute", "beetsbears@battlestar.com", "jello"]
+
+        Remove: 
+
+            To remove a value from the end, we use the pop method: 
+
+                var user = ["Dwight", "Schrute", "beetsbears@battlestar.com"];
+                user.pop();
+                console.log(user);    // ["Dwight", "Schrute"]
+
+        Access/Update: 
+
+            To access or update values in an array, we use index numbers, with the first value being at index 0: 
+
+                var user = ["Dwight", "Schrute", "beetsbears@battlestar.com"];
+                console.log(user[0]);    // reading the value -- OUTPUT: Dwight
+                user[1] = "Martin";    // updating the value
+                console.log(user);    // ["Dwight", "Martin", "beetsbears@battlestar.com"]
+
+        Length: 
+
+            Arrays also have a length property, which tells us how many values are contained in the array: 
+
+                var user = ["Dwight", "Schrute", "beetsbears@battlestar.com"];
+                console.log(user.length);    // 3
+                user.pop();
+                console.log(user.length);    // 2
+
+
+For Loops 
+
+    Overview 
+
+        Sometimes in code, we'll want to do one thing several times. Let's start with something simple, like a counter we could write something like so 
+
+            console.log(0);
+            console.log(1);
+            console.log(2);
+            console.log(3);
+            console.log(4);
+            console.log(5);
+
+        It would technically work but it would be insanely tedious. 
+
+
+    For Loops
+
+        Loops are very common and as programmers do, they developed a loop that shorthanded many of the components above into one line. A for loop allows us to do the same operation a number of times. The following will do the same as the code above 
+
+            for (var num = 0; num <= 5; num++) {
+                console.log(num);
+            }
+
+        This code also counts up to five, but the code gets executed in this order.
+
+            1. the first piece, var num = 0 is executed just once
+            2. the second piece, num <= 5 gets evaluated. If its true, move onto step 3. If false, jump to step six. 
+            3. execute whatever is inside of the for loops code block in this case console.log(num)
+            4. execute the third piece, num++ 
+            5. go back to step 2
+            6. continue executing the code that comes after the for loop 
+
+    Loops + Arrays 
+
+        Using these ideas of index numbers and array length, we can actually use a for loop to iterate through an array and look at every element. We can set our loop variable to start at 0, the first index in an array. We stop when we reach the length of the array. Each time the loop executes, we now can access elements in the array by that index. 
+
+            var arr = [2,4,6,8,10];
+            for (var i = 0; i < arr.length; i = i + 1) {        
+                console.log(i);             // prints the index       
+                console.log(arr[i]);        // prints the array value at that index
+            }
+
+        Note-the end condition of our for loop uses < instead of <= because arrays start at index 0, the last index of an array will actually be one less than the length of the array. Therefor, we want to stop our loop from incrementing one value before we reach the length of the array. 
+
+
+Functions 
+
+    Overview 
+
+        Functions are chunks of code aka code blocks, that when triggered are set of instructions regarding what the computer program should do. Lets look deeper at the syntax of a function 
+
+            function nameOfFunction() {   
+                
+                // code to be executed
+            }
+
+        A function is a set of instructions, just waiting to be triggered. However, functions are like actors in the wings of a play: they aren't always on stage repeating their lines. They have to wait to be called on. Another metaphor is that functions are like recipe. Once we have the recipe for chocolate chip cookies we know how to make cookies. But that doesn't mean that we automatically have cookies. We have to call the actor on stage or work through the steps and make the cookies. 
