@@ -9,8 +9,10 @@ const Dashboard = () => {
 
   //Setting state for Budget Items
   const [budgetItems, setBudgetItems] = useState([]);
+  const [savingsAccount, setSavingsAccount] = useState([]);
 
-  //Listing all Stores with API call
+
+  //Listing all budget items with API call
   useEffect(()=> {
     axios.get("http://localhost:8000/api/budgetItems")
     .then((res) => {
@@ -21,6 +23,22 @@ const Dashboard = () => {
         console.log(err);
     });
     }, [])
+
+
+
+  //Retrieving Savings Account Info
+  useEffect(()=> {
+    axios.get("http://localhost:8000/api/savingsAccount")
+    .then((res) => {
+        console.log(res.data);
+        setSavingsAccount(res.data);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+    }, [])
+
+
 
   //Creating functions to sort the items by type and frequency. 
   const monthlyExpenses = (item) => {
@@ -77,12 +95,82 @@ const Dashboard = () => {
     return total
   }
 
+
+  //Setting up conditional rendering for create and update for savings account
+  const savings = (savingAccount) => {
+    console.log(savingsAccount, "inside Savings Account Function")
+    
+    if (savingAccount.length > 0) {
+      return <div>
+            <Link to={`/savingsAccount/edit/${savingAccount[0]._id}`}>Withdraw Or Deposit</Link>
+            <p>Current Ballance : ${savingsAccount[0].amount}</p>
+            </div>
+    }
+    else {
+      return <Link to={`/savingsAccount`}>Create Account</Link>
+    }
+  }
+  
+
   //Calculating Total Spending
   const savingsAdjustment = (everything) => {
-    let total = incomeTotal(everything) - expenseTotal(everything);
+    let total = incomeTotal(everything)- expenseTotal(everything) ;
+    console.log(total,"Total ")
     return total;
   }
 
+  //Close Month Totals up all expenses, Fun fact, adding a negative number subtracts 
+  const closeMonth  = (savingsAmount, totals) => { 
+    let total = savingsAdjustment(totals)
+    let balance = savingsAmount[0].amount
+    let result = balance + total
+    console.log(result)
+
+  //   axios.patch(`http://localhost:8000/api/savingsAccount/${savingsAmount[0]._id}`, {
+  //     amount : result
+  //   })
+  //   .then(res => {
+  //     axios.get("http://localhost:8000/api/savingsAccount")
+  //     .then((res) => {
+  //         console.log(res.data);
+  //         setSavingsAccount(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   })
+  // }
+    //useReducer/useContex 
+
+
+    //https://medium.com/analytics-vidhya/why-we-should-never-update-react-state-directly-c1b794fac59b
+
+    //https://react.dev/learn/updating-objects-in-state
+
+  axios.patch(`http://localhost:8000/api/savingsAccount/${savingsAmount[0]._id}`, {
+    amount : result
+  })
+  .then(res => {
+    console.log( res.data)
+    setSavingsAccount(res.data);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+
+  axios.get("http://localhost:8000/api/savingsAccount")
+  .then((res) => {
+      console.log(res.data);
+      setSavingsAccount(res.data);
+  })
+  .catch((err) => {
+      console.log(err);
+  });
+  }
+  
 
 
   return (
@@ -124,7 +212,7 @@ const Dashboard = () => {
           <h4>Monthly Income</h4>
           <div id='Monthly Income'>
             {
-              budgetItems.map((item, idx) => {
+              budgetItems.map((item, _id) => {
                 return ( 
                   <p>{monthlyIncome(item)}</p>
                 )
@@ -134,7 +222,7 @@ const Dashboard = () => {
           <div id='Other Income'>
           <h4>Other Income</h4>
           {
-              budgetItems.map((item, idx) => {
+              budgetItems.map((item, _id) => {
                 return ( 
                   <p>{otherIncome(item)}</p>
                 )
@@ -147,10 +235,13 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className='Savings'>
-        <div></div>
+      <div class="d-flex justify-content-center">
+        <div>
             <h4>Total Savings</h4>
-            <p>${savingsAdjustment(budgetItems)}</p>
+            <p>{savings(savingsAccount)}</p>
+            <button onClick={(e) => closeMonth(savingsAccount, budgetItems)}>Close Month</button>
+
+        </div>
       </div>
     </div>
   )

@@ -6,7 +6,7 @@ const SavingsAccount = require ("../models/savingsAccount.model");
             module.exports.findAllSavingsAccounts = (req, res) => {
                 SavingsAccount.find()
                     .then((allSavingsAccounts) => {
-                        res.status(200).json(allBudgetItems)
+                        res.status(200).json(allSavingsAccounts)
                     })
                     .catch((err) => {
                         res.status(500).json({err})
