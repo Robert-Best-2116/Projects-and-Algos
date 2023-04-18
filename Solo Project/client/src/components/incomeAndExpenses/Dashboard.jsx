@@ -97,13 +97,13 @@ const Dashboard = () => {
 
 
   //Setting up conditional rendering for create and update for savings account
-  const savings = (savingAccount) => {
+  const savings = (savingsAccount) => {
     console.log(savingsAccount, "inside Savings Account Function")
     
-    if (savingAccount.length > 0) {
+    if (savingsAccount.length > 0) {
       return <div>
-            <Link to={`/savingsAccount/edit/${savingAccount[0]._id}`}>Withdraw Or Deposit</Link>
-            <p>Current Ballance : ${savingsAccount[0].amount}</p>
+            <Link to={`/savingsAccount/edit/${savingsAccount[0]._id}`}>Withdraw Or Deposit</Link>
+            <p>Current Balance : ${savingsAccount[0].amount}</p>
             </div>
     }
     else {
