@@ -39,37 +39,29 @@ const Dashboard = () => {
     }, [])
 
 
+  const buildLink = (item) => {
+    return <p> <Link to={`/budgetItem/${item._id}`}>{item.name}</Link> {item.amount} </p>
+  }
 
   //Creating functions to sort the items by type and frequency. 
   const monthlyExpenses = (item) => {
-    if (item.type === "expense" && item.frequency === "monthly"
-    ) {
-      return <p> <Link to={`/budgetItem/${item._id}`}>{item.name}</Link> {item.amount} </p>
-    }
-    else {return null;}
+    return item.type === "expense" && item.frequency === "monthly"
   }
-
-  const otherExpenses = (item) => {
-    if (item.type === "expense" && item.frequency === "other"
-    ) {
-      return <p> <Link to={`/budgetItem/${item._id}`}>{item.name}</Link> {item.amount} </p>
-    }
-    else {return null;}
-  }
-
   const monthlyIncome = (item) => {
-    if (item.type === "income" && item.frequency === "monthly"
-    ) {
-      return <p> <Link to={`/budgetItem/${item._id}`}>{item.name}</Link> {item.amount} </p>
-    }
-    else {return null;}
+    return item.type === "income" && item.frequency === "monthly"
+  }
+  const otherExpenses = (item) => {
+    return item.type === "expense" && item.frequency === "other"
   }
   const otherIncome = (item) => {
-    if (item.type === "income" && item.frequency === "other"
-    ) {
-      return <p> <Link to={`/budgetItem/${item._id}`}>{item.name}</Link> {item.amount} </p>
-    }
-    else {return null;}
+    return item.type === "income" && item.frequency === "other"
+  }
+
+  // create links to monthlyExpense-type budgetItem objects
+  const monthlyExpenseLinks = (items) => {
+    const budgetItems = items.filter(monthlyExpenses);
+
+    return budgetItems.map(buildLink);
   }
 
   // Calculating total income and expenses
@@ -170,8 +162,6 @@ const Dashboard = () => {
       console.log(err);
   });
   }
-  
-
 
   return (
     <div className='container'>
@@ -184,13 +174,7 @@ const Dashboard = () => {
           <h2>Expenses Column </h2>
           <h4>Monthly Expenses</h4>
           <div id='Monthly Expenses'>
-            {
-              budgetItems.map((item, idx) => {
-                return ( 
-                  <p>{monthlyExpenses(item)}</p>
-                )
-              })
-            }
+            {monthlyExpenseLinks(budgetItems)}
           </div>
           <div id='Other Expenses'>
           <h4>Other Expenses</h4>
