@@ -126,30 +126,6 @@ const Dashboard = () => {
     let result = balance + total
     console.log(result)
 
-  //   axios.patch(`http://localhost:8000/api/savingsAccount/${savingsAmount[0]._id}`, {
-  //     amount : result
-  //   })
-  //   .then(res => {
-  //     axios.get("http://localhost:8000/api/savingsAccount")
-  //     .then((res) => {
-  //         console.log(res.data);
-  //         setSavingsAccount(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
-  // }
-    //useReducer/useContex 
-
-
-    //https://medium.com/analytics-vidhya/why-we-should-never-update-react-state-directly-c1b794fac59b
-
-    //https://react.dev/learn/updating-objects-in-state
-
   axios.patch(`http://localhost:8000/api/savingsAccount/${savingsAmount[0]._id}`, {
     amount : result
   })
